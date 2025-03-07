@@ -1,0 +1,34 @@
+{
+  "name": "recruit",
+  "version": "1.0.0",
+  "description": "A styled MERN stack auth app",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "cd backend && npm start",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd backend && npm start",
+    "client": "cd frontend && npm start",
+    "build": "cd frontend && npm run build",
+    "deploy-gh": "cd frontend && npm run deploy",
+    "install-all": "npm install && cd backend && npm install && cd ../frontend && npm install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carolwargo/recruit.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/carolwargo/recruit/issues"
+  },
+  "homepage": "https://carolwargo.github.io/recruit",
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "gh-pages": "^6.1.1"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7"
+  }
+}
