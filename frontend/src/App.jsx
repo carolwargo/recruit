@@ -1,63 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import UserSettings from './pages/UserSettings/UserSettings';
+import HomePage from './pages/HomePage/HomePage';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 function App() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [token, setToken] = useState(null);
+  const [token, setToken] = useState(localStorage.getItem('token'));
 
-  const handleSignup = async () => {
-    try {
-      const res = await fetch('http://localhost:5000/api/auth/signup', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
-      });
-      const data = await res.json();
-      setToken(data.token);
-    } catch (error) {
-      console.error('Signup failed:', error);
+  useEffect(() => {
+    if (token) {
+      localStorage.setItem('token', token);
+    } else {
+      localStorage.removeItem('token'); // Clear if logged out
     }
-  };
-
-  const handleLogin = async () => {
-    try {
-      const res = await fetch('http://localhost:5000/api/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
-      });
-      const data = await res.json();
-      setToken(data.token);
-    } catch (error) {
-      console.error('Login failed:', error);
-    }
-  };
+  }, [token]);
 
   return (
-    <div className="App">
-      <h1>Auth App</h1>
-      {!token ? (
-        <div className="auth-container">
-          <input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <button onClick={handleSignup}>Sign Up</button>
-          <button onClick={handleLogin}>Log In</button>
-        </div>
-      ) : (
-        <p>Welcome! Token: {token}</p>
-      )}
-    </div>
+    <Router>
+      <div className="App">
+        <Navbar token={token} setToken={setToken} />
+        <Routes>
+        <Route path="/" element={<HomePage token={token} setToken={setToken} />} />
+          <Route path="/settings" element={<UserSettings token={token} />} />
+          <Route path="/personal" element={<div>Personal Info (TBD)</div>} />
+          <Route path="/contact" element={<div>Contact Info (TBD)</div>} />
+          <Route path="/athletic" element={<div>Athletic Profile (TBD)</div>} />
+          <Route path="/academic" element={<div>Academic Profile (TBD)</div>} />
+          <Route path="/media" element={<div>Media Uploads (TBD)</div>} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

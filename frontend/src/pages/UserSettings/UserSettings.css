@@ -1,0 +1,30 @@
+.user-settings {
+  min-height: 100vh;
+  background-color: #000;
+  color: #fff;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0; /* Align with top of screen */
+  left: 0;
+  width: 25%; /* Explicit width */
+  height: 100%;
+  overflow-y: auto;
+  background-color: #212529; /* Darker sidebar */
+}
+
+.main-content {
+  margin-left: 25%; /* Matches sidebar width */
+  width: 75%; /* Full remaining width */
+}
+
+section {
+  margin-bottom: 2rem;
+}
+
+.form-control {
+  background-color: #222;
+  color: #fff;
+  border: 1px solid #ccc;
+}
