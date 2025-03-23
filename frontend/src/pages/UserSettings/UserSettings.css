@@ -1,17 +1,17 @@
 .user-settings {
   min-height: 100vh;
-  background-color: #000;
-  color: #fff;
+  background-color: #ffffff;
+  color: #050505;
 }
 
 .sidebar {
   position: fixed;
-  top: 0; /* Align with top of screen */
+  top: 10; /* Align with top of screen */
   left: 0;
   width: 25%; /* Explicit width */
   height: 100%;
   overflow-y: auto;
-  background-color: #212529; /* Darker sidebar */
+  background-color: #cdcecf; /* Darker sidebar */
 }
 
 .main-content {
@@ -23,8 +23,60 @@ section {
   margin-bottom: 2rem;
 }
 
+.sidebar ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none !important;
+} 
+
+.sidebar ul li {
+  list-style-type: none !important;
+  padding: 1rem;
+ color: #050505;
+} 
+
+.sidebar ul li a{
+  list-style-type: none !important;
+  padding: 1rem;
+ color: #050505;
+} 
+
+.sidebar ul li a {
+  color: white; /* Set text color */
+  text-decoration: none; /* Remove underline */
+  transition: color 0.3s ease-in-out; /* Smooth color transition */
+}
+
+.sidebar ul li a:hover {
+  color: #17a2b8; /* Change text color on hover */
+}
+
+
+
 .form-control {
-  background-color: #222;
-  color: #fff;
-  border: 1px solid #ccc;
+  background-color: #fff; 
+  color: #aaa9a9 !important;
+  border: 1px solid #969696;
+  font-size: 12px;
+  margin-top: 1rem;
+}
+
+.form-label {
+  color: #050505;
+  font-size: 18px;
+  font-weight: 600;
+  border-bottom: #050505  3px solid;
+} 
+
+.form-group {
+background-color: #ccc !important;
+color: #aaa9a9;
+} 
+
+.btn {
+  background-color: #ff01dd;
+  color: #fefdfd;
+  border: 1px solid #ff01dd;
+  font-size: 12px;
+  margin-bottom: 2rem;
 }

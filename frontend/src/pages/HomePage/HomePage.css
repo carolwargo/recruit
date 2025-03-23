@@ -5,13 +5,13 @@
 }
 
 .hero {
-  background: linear-gradient(to bottom, #000102, #343a40);
+  background: linear-gradient(to bottom, #000102, #121212);
   padding: 5rem 0 !important;
 }
 
 .hero .btn-outline-light:hover {
-  background-color: var(--text-light);
-  color: var(--text-dark);
+  background-color: #ff01dd;
+  color: black;
 }
 
 .features .card {

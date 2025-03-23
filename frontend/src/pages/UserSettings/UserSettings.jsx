@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button, Card, InputGroup } from 'react-bootstrap';
 import './UserSettings.css';
 
 const UserSettings = ({ token }) => {
@@ -10,7 +10,9 @@ const UserSettings = ({ token }) => {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/user/profile`, {
+        const res = await 
+        console.log('API URL:', import.meta.env.VITE_API_URL);
+        axios.get(`${import.meta.env.VITE_API_URL}/api/user/profile`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setUser(res.data);
@@ -18,6 +20,7 @@ const UserSettings = ({ token }) => {
         console.error('Error fetching profile:', error);
       }
     };
+
     if (token) fetchProfile();
   }, [token]);
 
@@ -48,10 +51,11 @@ const UserSettings = ({ token }) => {
 
   return (
     <Container fluid className="user-settings">
+ 
       <Row className='g-0'>
-        <Col md={3} className="sidebar bg-dark text-light p-3">
+        <Col md={3} className="sidebar bg-dark text-light p-4">
           <h4>Menu</h4>
-          <ul className="list-unstyled">
+          <ul>
             <li><a href="#userInfo">User Info</a></li>
             <li><a href="#personal">Personal Info</a></li>
             <li><a href="#contact">Contact Info</a></li>
@@ -76,7 +80,7 @@ const UserSettings = ({ token }) => {
                 </>
               ) : (
                 <>
-                  <p>{user.firstName || 'Not set'}</p>
+                 <p>First Name: {user.firstname || 'Not set'}</p>
                   <Button variant="link" onClick={() => toggleEdit('firstName')}>
                     <i className="bi bi-pencil"></i>
                   </Button>
@@ -108,6 +112,26 @@ const UserSettings = ({ token }) => {
                 </>
               )}
             </Form.Group>
+            <Form.Group>
+             
+              <Form.Label>High School</Form.Label>
+              {editMode.personalInfo ? (
+                <>
+                  <Form.Control
+                    value={user.personalInfo?.highSchool || ''}
+                    onChange={(e) => handleChange(e, 'personalInfo', 'highSchool')}
+                  />
+                  <Button onClick={() => saveChanges('personalInfo')}>Save</Button>
+                </>
+              ) : (
+                <>
+                  <p>{user.personalInfo?.highSchool || 'Not set'}</p>
+                  <Button variant="link" onClick={() => toggleEdit('personalInfo')}>
+                    <i className="bi bi-pencil"></i>
+                  </Button>
+                </>
+              )}
+            </Form.Group>
             {/* Repeat for other personalInfo fields */}
           </section>
 
@@ -119,3 +143,30 @@ const UserSettings = ({ token }) => {
 };
 
 export default UserSettings;
+
+
+
+
+
+
+/**
+      <Row className="mb-3">
+        <Form.Group as={Col} md="6" controlId="validationCustom03">
+          <Form.Control type="text" placeholder="City" required />
+          <Form.Control.Feedback type="invalid">
+            Please provide a valid city.
+          </Form.Control.Feedback>
+        </Form.Group>
+        <Form.Group as={Col} md="3" controlId="validationCustom04">
+          <Form.Control type="text" placeholder="State" required />
+          <Form.Control.Feedback type="invalid">
+            Please provide a valid state.
+          </Form.Control.Feedback>
+        </Form.Group>
+        <Form.Group as={Col} md="3" controlId="validationCustom05">
+          <Form.Control type="text" placeholder="Zip" required />
+          <Form.Control.Feedback type="invalid">
+            Please provide a valid zip.
+          </Form.Control.Feedback>
+        </Form.Group>
+      </Row> */

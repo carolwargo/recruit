@@ -1,5 +1,5 @@
 .auth-container {
-  background-color: #343a40;
+  background-color: #030303;
   padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -9,22 +9,103 @@
   width: 100%;
   margin-bottom: 1rem;
   padding: 0.75rem;
-  background-color: #495057;
-  border: 1px solid #6c757d;
+  background-color: #000000;
+  border: 2px solid #acadad;
+  box-shadow: 1px 1px 3px rgba(255, 255, 255, 0.4);
   color: var(--text-light);
   border-radius: 4px;
 }
 
-.auth-container button {
-  width: 48%;
-  margin: 0 1%;
+.button-container {
+  display: flex;
+  gap: 10px; /* Even spacing */
+  width: 100%; /* Stretch to full container */
+}  
+
+.button-container .login {
+  flex: 1; /* Makes both buttons take up equal space */
   padding: 0.75rem;
-  background-color: #007bff;
-  border: none;
+  background-color: #ff01dd;
+  border: 2px solid #acadad;
+  box-shadow: 1px 1px 3px rgba(255, 255, 255, 0.4);
   color: var(--text-light);
   border-radius: 4px;
+  text-align: center;
 }
 
-.auth-container button:hover {
-  background-color: #0056b3;
+.button-container .signup {
+  flex: 1; /* Makes both buttons take up equal space */
+  padding: 0.75rem;
+  background-color: #ff01dd;
+  border: 2px solid #acadad;
+  box-shadow: 1px 1px 3px rgba(255, 255, 255, 0.4);
+  color: var(--text-light);
+  border-radius: 4px;
+  text-align: center;
+}
+
+
+
+.button-container .signup {
+  flex: 1; /* Makes both buttons take up equal space */
+  padding: 0.75rem;
+  background-color: #070707;
+  border: 2px solid #ff01dd;
+  box-shadow: 1px 1px 3px rgba(247, 131, 245, 0.4);
+  color: var(--text-light);
+  border-radius: 4px;
+  text-align: center;
+}
+
+
+.button-container:hover {
+  background-color: #940280;
+  border: 2px solid #3b3c3c;
+}
+
+.auth-container p {
+ font-weight: 200;
+ text-align: center;
+} 
+
+
+/*Alert Box Styling */
+.alert {
+  padding: 10px;
+  margin-top: 20px;
+  border-radius: 5px;
+  text-align: center;
+  font-weight: bold;
+  transition: opacity 0.3s ease;
+}
+
+/* Success alert */
+.alert-success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+/* Error alert */
+.alert-error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+/* Optional: Fade out the alert after a few seconds */
+.alert {
+  animation: fadeOut 5s forwards;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
