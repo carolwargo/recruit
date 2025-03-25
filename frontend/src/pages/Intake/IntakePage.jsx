@@ -1,42 +1,69 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import Pagination from "react-bootstrap/Pagination";
-import "./Intake.css";
+import React, { useEffect } from 'react';
+import { useNavigate, Outlet } from 'react-router-dom';
+import './IntakePage.css';
 
-const Intake = () => {
-  const navigate = useNavigate(); // Hook for navigation
-  let active = 1;
-  
-  // Corrected paths that match App.js
-  let pagePaths = ["/personal-info", "/athletic-info", "/academic-info"]; 
+const IntakePage = ({ token, userId }) => {
+  const navigate = useNavigate();
 
-  // Generate pagination items dynamically
-  let items = pagePaths.map((path, index) => (
-    <Pagination.Item
-      key={index}
-      active={index + 1 === active}
-      onClick={() => navigate(path)} // Navigate when clicked
-    >
-      {index + 1}
-    </Pagination.Item>
-  ));
+  // Redirect to login if no token
+  useEffect(() => {
+    if (!token) {
+      navigate('/login');
+    }
+  }, [token, navigate]);
+
+  if (!token) {
+    return null; // Nothing renders during redirect
+  }
 
   return (
-    <div>
-        
-      <h2 className="text-center">Intake Forms</h2>
-
-      {/* Pagination Navigation */}
-      <div className="d-flex justify-content-center">
-        <Pagination size="sm" className="custom-pagination">{items}</Pagination>
+    <div className="intake-wrapper bg-black text-white min-vh-100">
+      <div className="container py-5">
+        <h2 className="text-center mb-4">Welcome, User {userId}</h2>
+        <Outlet /> {/* Renders PersonalForm, AthleticForm, or AcademicForm */}
       </div>
     </div>
   );
 };
 
-export default Intake;
+export default IntakePage;
+
+/**
+ * import React from 'react';
+import { useNavigate, Outlet } from 'react-router-dom';
+import AuthForm from '../../components/AuthForm/AuthForm';
+import './Intake.css';
+
+const IntakePage = ({ token, userId }) => {
+  const navigate = useNavigate();
+
+  if (!token) {
+    return (
+      <div className="intake-wrapper bg-black text-white d-flex align-items-center justify-content-center min-vh-100">
+        <div className="text-center">
+          <h5 className="mb-4">Please log in to access the intake form.</h5>
+          <AuthForm />
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="intake-wrapper bg-black text-white min-vh-100">
+      <div className="container py-5">
+        <h2 className="text-center mb-4">Welcome, User {userId}</h2>
+        <Outlet />
+      </div>
+    </div>
+  );
+};
+
+export default IntakePage;
+
+ */
 
 
+{/** */}
 {/**PERSONAL START */}
 {/** 
 <Container fluid className="intake-page py-5">

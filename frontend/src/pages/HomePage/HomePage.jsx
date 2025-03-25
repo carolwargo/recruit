@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import AuthForm from '../../components/AuthForm/AuthForm';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./HomePage.css";
+import SubscribeForm from '../../components/SubscribeForm/SubscribeForm';
 
 const Homepage = ({ token, setToken }) => {
   return (
@@ -16,7 +17,7 @@ const Homepage = ({ token, setToken }) => {
             Build your personal brand with digital recruiting tools—custom websites, graphics, and social media marketing for student-athletes aiming for college sports.
           </p>
           {token ? (
-            <Link to="/" className="btn  btn-lg" style={{backgroundColor:'#ff01dd', color:'white',   boxShadow: '1px 1px 3px rgba(255, 255, 255, 0.4)'}}>User Profile</Link>
+            <Link to="/" className="btn btn-lg">User Profile</Link>
           ) : (
             <Link to="/" className="btn btn-outline-light btn-lg">Get Started</Link>
           )}
@@ -61,7 +62,9 @@ const Homepage = ({ token, setToken }) => {
         </div>
       </section>
 
-      {/* Auth Section (for unauthenticated users) */}
+
+
+      {/* Auth Section (for unauthenticated users) 
       {!token && (
         <section className="auth-section text-white"
         id="auth-section"
@@ -75,17 +78,23 @@ const Homepage = ({ token, setToken }) => {
           </div>
         </section>
       )}
-
+*/}
       {/* Welcome Section (for authenticated users) */}
       {token && (
         <section className="welcome-section py-5 text-center">
           <div className="container">
             <h2>Welcome Back!</h2>
-            <p>Your session token: {token.slice(0, 20)}...</p>
             <Link to="/" className="btn btn-primary">Manage Your Profile</Link>
           </div>
         </section>
+    
       )}
+          
+          <div className="container-fluid">
+            <div className="row justify-content-center">
+        <SubscribeForm setToken={setToken} /> 
+            </div>
+          </div>
     </div>
   );
 };
