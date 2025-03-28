@@ -1,100 +1,67 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import HomePage from './pages/Homepage/Homepage';
-import Intake from './pages/Intake/Intake';
+import ProtectedRoute from './components/ProtectedRoute';
+import IntakePage from './pages/IntakePage/IntakePage';
 import PersonalForm from './components/IntakeForms/PersonalForm';
+import ContactForm from './components/IntakeForms/ContactForm';
 import AthleticForm from './components/IntakeForms/AthleticForm';
 import AcademicForm from './components/IntakeForms/AcademicForm';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
-
-
-function App() {
-  const [token, setToken] = useState(localStorage.getItem('token'));
-
-  useEffect(() => {
-    if (token) {
-      localStorage.setItem('token', token);
-    } else {
-      localStorage.removeItem('token'); // Clear if logged out
-    }
-  }, [token]);
-
-  const userId = localStorage.getItem('userId');
-
-
-  
-
-  return (
-    <Router>
-      <div className="App">
-        <Navbar token={token} setToken={setToken} />
-        <Routes>
-        <Route path="/" element={<HomePage token={token} setToken={setToken} />} />
-        <Route path="/intake" element={<Intake token={token} userId={userId} />} />
-                   
-          {/* Intake Form Routes */}
-          <Route path="/personal-info" element={<PersonalForm />} />
-          <Route path="/athletic-info" element={<AthleticForm />} />
-          <Route path="/academic-info" element={<AcademicForm />} />
-
-      
-        </Routes>
-      </div>
-    </Router>
-  );
-}
-
-export default App;
-
-
-/**
- * import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Navbar from './components/Navbar/Navbar';
 import UserSettings from './pages/UserSettings/UserSettings';
-import HomePage from './pages/Homepage/Homepage';
-import Intake from './pages/Intake/Intake';
+import AuthPage from './pages/AuthPage/AuthPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
-
 function App() {
   const [token, setToken] = useState(localStorage.getItem('token'));
+  const [userId, setUserId] = useState(localStorage.getItem('userId')); // Dynamic userId
 
   useEffect(() => {
     if (token) {
       localStorage.setItem('token', token);
+      if (userId) localStorage.setItem('userId', userId);
     } else {
-      localStorage.removeItem('token'); // Clear if logged out
+      localStorage.removeItem('token');
+      localStorage.removeItem('userId');
+      setUserId(null); // Clear userId on logout
     }
-  }, [token]);
-
-  const userId = localStorage.getItem('userId');
-
-
-  
+  }, [token, userId]);
 
   return (
     <Router>
       <div className="App">
         <Navbar token={token} setToken={setToken} />
         <Routes>
-        <Route path="/" element={<HomePage token={token} setToken={setToken} />} />
-        <Route path="/intake" element={<Intake token={token} userId={userId} />} />
-                   
-           Intake Form Routes 
-          <Route path="/personal-info" element={<PersonalForm />} />
-          <Route path="/athletic-info" element={<AthleticForm />} />
-          <Route path="/academic-info" element={<AcademicForm />} />
+          {/* Root: Redirect based on auth */}
+          <Route
+            path="/"
+            element={token ? <Navigate to={`/intake/${userId}`} /> : <HomePage token={token} setToken={setToken} />}
+          />
+          {/* Auth Page */}
+          <Route path="/auth" element={<AuthPage token={token} setToken={setToken} setUserId={setUserId} />} />
 
-          <Route path="/settings" element={<UserSettings token={token} />} />
-          <Route path="/personal" element={<div>Personal Info (TBD)</div>} />
-          <Route path="/contact" element={<div>Contact Info (TBD)</div>} />
-          <Route path="/athletic" element={<div>Athletic Profile (TBD)</div>} />
-          <Route path="/academic" element={<div>Academic Profile (TBD)</div>} />
-          <Route path="/media" element={<div>Media Uploads (TBD)</div>} />
+          {/* Protected Intake Routes */}
+          <Route element={<ProtectedRoute token={token} />}>
+            <Route path="/intake/:userId" element={<IntakePage token={token} userId={userId} />}>
+              <Route index element={<Navigate to="personal" replace />} /> {/* Default to personal */}
+              <Route path="personal" element={<PersonalForm token={token} userId={userId} />} />
+              <Route path="contact" element={<ContactForm token={token} userId={userId} />} />
+              <Route path="athletic" element={<AthleticForm token={token} userId={userId} />} />
+              <Route path="academic" element={<AcademicForm token={token} userId={userId} />} />
+            </Route>
+
+            {/* Settings Routes */}
+            <Route path="/settings/*" element={<UserSettings token={token} userId={userId} />}>
+              <Route index element={<div>User Settings Dashboard (TBD)</div>} />
+              <Route path="personal" element={<div>Personal Info (TBD)</div>} />
+              <Route path="athletic" element={<div>Athletic Profile (TBD)</div>} />
+              <Route path="academic" element={<div>Academic Profile (TBD)</div>} />
+            </Route>
+          </Route>
+
+          {/* Catch-all for unmatched routes */}
+          <Route path="*" element={<div>404 - Page Not Found</div>} />
         </Routes>
       </div>
     </Router>
@@ -102,4 +69,3 @@ function App() {
 }
 
 export default App;
- */

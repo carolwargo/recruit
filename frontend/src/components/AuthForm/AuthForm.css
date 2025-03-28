@@ -3,109 +3,133 @@
   padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: #eae7e7;
+  border: 1px solid #eae7e7;
 }
 
-.auth-container input {
+/* Inputs */
+.auth-container .form-control {
   width: 100%;
   margin-bottom: 1rem;
   padding: 0.75rem;
-  background-color: #000000;
+  background-color: #000 !important;
   border: 2px solid #acadad;
-  box-shadow: 1px 1px 3px rgba(255, 255, 255, 0.4);
-  color: var(--text-light);
+  color: #eae7e7 !important;
   border-radius: 4px;
+  outline: none;
+  -webkit-text-fill-color: #eae7e7 !important;
+  box-shadow: inset 0 0 0px 1000px #000 !important;
 }
 
+.auth-container .form-control::placeholder {
+  color: #acadad;
+}
+
+.auth-container .form-control:focus {
+  border-color: #cae8ff;
+}
+
+/* Consent Section */
+.consent-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+
+/* Align Label with Checkbox */
+.consent-label {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 0; /* Ensure it doesn’t shift down */
+  font-size: 0.875rem; /* Optional: Adjust font size for better alignment */
+}
+
+/* Adjust Checkbox Size */
+.auth-container .form-check-input {
+  width: 14px !important;
+  height: 14px !important;
+  background-color: #030303;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+
+
+/* Buttons */
 .button-container {
   display: flex;
-  gap: 10px; /* Even spacing */
-  width: 100%; /* Stretch to full container */
-}  
+  gap: 10px;
+  width: 100%;
+}
+
+.button-container .signup,
+.button-container .login {
+  flex: 1;
+  padding: 0.75rem;
+  text-align: center;
+  border-radius: 4px;
+  border: 2px solid transparent;
+  box-shadow: 1px 1px 3px rgba(86, 83, 86, 0.4);
+}
+
+.button-container .signup {
+  background-color: #cae8ff;
+  color: #070707;
+  margin-bottom: 10px;
+}
+
+.button-container .signup:hover {
+  background-color: #000;
+  border-color: #cae8ff;
+  color: #cae8ff;
+}
 
 .button-container .login {
-  flex: 1; /* Makes both buttons take up equal space */
-  padding: 0.75rem;
-  background-color: #ff01dd;
-  border: 2px solid #acadad;
-  box-shadow: 1px 1px 3px rgba(255, 255, 255, 0.4);
-  color: var(--text-light);
-  border-radius: 4px;
-  text-align: center;
-}
-
-.button-container .signup {
-  flex: 1; /* Makes both buttons take up equal space */
-  padding: 0.75rem;
-  background-color: #ff01dd;
-  border: 2px solid #acadad;
-  box-shadow: 1px 1px 3px rgba(255, 255, 255, 0.4);
-  color: var(--text-light);
-  border-radius: 4px;
-  text-align: center;
-}
-
-
-
-.button-container .signup {
-  flex: 1; /* Makes both buttons take up equal space */
-  padding: 0.75rem;
   background-color: #070707;
-  border: 2px solid #ff01dd;
-  box-shadow: 1px 1px 3px rgba(247, 131, 245, 0.4);
-  color: var(--text-light);
-  border-radius: 4px;
-  text-align: center;
+  border-color: #cae8ff;
+  color: #eae7e7;
+  margin-bottom: 10px;
 }
 
-
-.button-container:hover {
-  background-color: #940280;
-  border: 2px solid #3b3c3c;
+.button-container .login:hover {
+  background-color: #cae8ff;
+  border-color: #cae8ff;
+  color: #070707;
 }
 
-.auth-container p {
- font-weight: 200;
- text-align: center;
-} 
+/* Links */
+.forgot-password,
+.terms,
+.privacy {
+  color: #acadad;
+  text-decoration: none;
+}
 
+.forgot-password:hover {
+  color: #cae8ff;
+}
 
-/*Alert Box Styling */
+/* Alerts */
 .alert {
   padding: 10px;
-  margin-top: 20px;
+  margin-bottom: 1rem;
   border-radius: 5px;
   text-align: center;
   font-weight: bold;
-  transition: opacity 0.3s ease;
 }
 
-/* Success alert */
 .alert-success {
   background-color: #d4edda;
   color: #155724;
-  border: 1px solid #c3e6cb;
+  border-color: #c3e6cb;
 }
 
-/* Error alert */
-.alert-error {
+.alert-danger {
   background-color: #f8d7da;
   color: #721c24;
-  border: 1px solid #f5c6cb;
-}
-
-/* Optional: Fade out the alert after a few seconds */
-.alert {
-  animation: fadeOut 5s forwards;
-}
-
-@keyframes fadeOut {
-  0% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
+  border-color: #f5c6cb;
 }

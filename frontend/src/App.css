@@ -1,5 +1,6 @@
 /*App.css*/
 /* Global styles and shared utilities */
+@import url('https://fonts.googleapis.com/css2?family=Blinker:wght@100;200;300;400;600;700;800;900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 
 body {
   margin: 0;
@@ -8,7 +9,7 @@ body {
 
 :root {
   --primary-bg: #f8f9fa; /* Light gray */
-  --dark-bg: #000102;    /* Dark background */
+  --dark-bg: #212529;    /* Dark background */
   --text-light: #fff;
   --text-dark: #343a40;
 }

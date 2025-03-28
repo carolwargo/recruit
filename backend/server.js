@@ -1,39 +1,87 @@
-require('dotenv').config({ path: './.env' });
+require('dotenv').config({ path: './.env' }); // Load environment variables from .env file
 const express = require('express');
 const cors = require('cors');
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
+const subscriberRoutes = require('./routes/subscribe');
 const connectDB = require('./config/connection');
 
+// Initialize Express app
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Middleware Logs
-console.log('🔧 Initializing Middleware...');
-
+// Middleware Setup
 app.use(cors({
-    origin: 'http://localhost:5173',  // Ensure this matches your frontend
-    credentials: true
-}));  
-console.log('✅ CORS configured');
+  origin: 'http://localhost:5173', // Frontend origin (Vite default port)
+  credentials: true, // Allow cookies/sessions if needed
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Supported methods
+  allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
+}));
 
-app.use(express.json());
-console.log('✅ JSON middleware enabled');
+app.use(express.json()); // Parse incoming JSON requests
 
-// Connect to Database
-console.log('📡 Connecting to Database...');
-connectDB().then(() => console.log('✅ Database Connected Successfully')).catch(err => console.error('❌ Database Connection Error:', err));
+// Request Logging Middleware
+app.use((req, res, next) => {
+  console.log(`[${new Date().toISOString()}] ${req.method} ${req.originalUrl}`);
+  next();
+});
 
-// Route Logs
+// Connect to MongoDB
+connectDB()
+  .then(() => console.log('✅ MongoDB Connected Successfully'))
+  .catch((err) => {
+    console.error('❌ MongoDB Connection Failed:', err.message);
+    process.exit(1); // Exit process on DB failure
+  });
+
+// Routes Setup
 console.log('🚀 Initializing Routes...');
-app.use('/api/auth', (req, res, next) => {
-    console.log(`🔹 [AUTH] ${req.method} ${req.originalUrl}`);
-    next();
-}, authRoutes);
+app.use('/api/auth', authRoutes);
+console.log('✅ Auth routes loaded');
+app.use('/api/user', userRoutes);
+console.log('✅ User routes loaded');
+app.use('/api/subscribe', subscriberRoutes);
+console.log('✅ Subscribe routes loaded');
 
-app.use('/api/user', (req, res, next) => {
-    console.log(`🔹 [USER] ${req.method} ${req.originalUrl}`);
-    next();
-}, userRoutes);
+// Root Route (Optional - for testing)
+app.get('/', (req, res) => {
+  res.json({ message: 'Welcome to the Recruit API' });
+});
 
-app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+// 404 Handler - Catch undefined routes
+app.use((req, res, next) => {
+  const error = new Error(`Route not found: ${req.originalUrl}`);
+  error.status = 404;
+  next(error);
+});
+
+// Global Error Handling Middleware
+app.use((err, req, res, next) => {
+  const status = err.status || 500;
+  const message = err.message || 'Internal Server Error';
+  console.error(`[${new Date().toISOString()}] ❌ Error (${status}): ${message}`, err.stack);
+  res.status(status).json({
+    success: false,
+    status,
+    message,
+    ...(process.env.NODE_ENV === 'development' && { stack: err.stack }), // Show stack in dev
+  });
+});
+
+// Start Server
+app.listen(PORT, () => {
+  console.log(`🚀 Server running on port ${PORT}`);
+  console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
+});
+
+// Handle Uncaught Exceptions
+process.on('uncaughtException', (err) => {
+  console.error('❌ Uncaught Exception:', err.message, err.stack);
+  process.exit(1);
+});
+
+// Handle Unhandled Promise Rejections
+process.on('unhandledRejection', (reason, promise) => {
+  console.error('❌ Unhandled Rejection at:', promise, 'Reason:', reason);
+  process.exit(1);
+});

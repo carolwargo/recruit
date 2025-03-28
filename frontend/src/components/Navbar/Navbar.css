@@ -8,6 +8,7 @@
     background-color: #343a40;
     border: none;
     min-width: 200px; /* Wider for more items */
+    display: none; /* Hide by default */
   }
 
   .dropdown-item {

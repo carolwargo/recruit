@@ -1,12 +1,8 @@
-// components/ProtectedRoute.jsx
 import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 
 const ProtectedRoute = ({ token }) => {
-  if (!token) {
-    return <Navigate to="/login" replace />;
-  }
-  return <Outlet />;
+  return token ? <Outlet /> : <Navigate to="/auth" replace />;
 };
 
 export default ProtectedRoute;

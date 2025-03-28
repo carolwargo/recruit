@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import AuthForm from '../../components/AuthForm/AuthForm';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Button, Container } from 'react-bootstrap';
 import "./HomePage.css";
 import SubscribeForm from '../../components/SubscribeForm/SubscribeForm';
 
@@ -9,17 +10,17 @@ const Homepage = ({ token, setToken }) => {
   return (
     <div className="homepage">
       {/* Hero Section */}
-      <section className="hero bg-black text-white text-center py-5">
+      <section className="hero text-white text-center py-5">
         <div className="container">
-          <h1 className="display-4 fw-bold">Recruit</h1>
-          <p className="lead">Empower Your Athletic Future</p>
+        <h1 style={{fontFamily:'Blinker'}}>Jock <span style={{fontFamily:'Poppins'}}>&</span> Boss.com</h1> 
+        <p className="tagline">Own Your Recruitment</p> {/* Raleway Thin */}
           <p className="mb-4">
             Build your personal brand with digital recruiting tools—custom websites, graphics, and social media marketing for student-athletes aiming for college sports.
           </p>
           {token ? (
             <Link to="/" className="btn btn-lg">User Profile</Link>
           ) : (
-            <Link to="/" className="btn btn-outline-light btn-lg">Get Started</Link>
+            <Link to="/">      <Button variant="primary" className="mt-3">Get Started</Button></Link>
           )}
         </div>
       </section>

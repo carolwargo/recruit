@@ -1,0 +1,153 @@
+.intake-wrapper {
+  background-color: #030303;
+  color: #eae7e7;
+}
+
+.form-control {
+  background-color: #000000;
+  border: 2px solid #acadad;
+  color: #eae7e7;
+  border-radius: 4px;
+}
+
+.form-check-input {
+  background-color: #030303;
+  border: 1px solid #eae7e7;
+  cursor: pointer;
+  margin: 0;
+} 
+.form-control::placeholder {
+  color: #acadad;
+}
+
+.form-control:focus {
+  border-color: #cae8ff;
+  box-shadow: none;
+}
+
+/* Add styles for dropdown */
+.form-select {
+  background-color: #000000; /* Black background */
+  border: 1px solid #acadad;
+  margin-top: 16px; /* White outline */
+  color: #acadad; /* White text */
+  border-radius: 4px;
+  padding: 0.7rem; /* Add some padding */  
+  font-size: .8rem; /* Match the input font size */
+  /* Ensure the arrow matches the theme */
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23eae7e7' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+}
+
+.form-select:focus {
+  background-color: #000000; /* Keep black on focus */
+  border-color: #cae8ff; /* Blue border on focus */
+  color: #eae7e7;
+  box-shadow: none; /* Remove Bootstrap’s default shadow */
+}
+
+.form-select option {
+  background-color: #030303; /* Dark background for dropdown options */
+  color: #eae7e7; /* White text for options */
+}
+
+/* Handle invalid state if needed */
+.form-select.is-invalid {
+  border-color: #dc3545; /* Red border for errors */
+}
+
+.btn-primary {
+  background-color: #cae8ff;
+  border-color: #cae8ff;
+  color: #070707;
+}
+
+.btn-primary:hover {
+  background-color: #000000;
+  border-color: #cae8ff;
+  color: #cae8ff;
+}
+
+.btn-outline-primary {
+  border-color: #cae8ff;
+  color: #cae8ff;
+}
+
+.btn-outline-primary:hover {
+  background-color: #cae8ff;
+  color: #070707;
+}
+
+.button-container {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.next-button.w-100.mt-4 {
+  background-color: #ffffff;
+  border-color: #cae8ff;
+  color: #070707;
+  padding: 0.5rem; 
+  font-weight: 500;
+  font-size: 18px;
+} 
+
+.next-button.w-100.mt-4:hover {
+  background-color: #000000;
+  border-color: #cae8ff;
+  color: #cae8ff;
+} 
+
+
+.signup, .login {
+  padding: 0.75rem;
+  border-radius: 4px;
+}
+
+.forgot-password {
+  color: #acadad;
+  text-decoration: none;
+}
+
+.forgot-password:hover {
+  color: #cae8ff;
+}
+
+.alert {
+  padding: 10px;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.alert-success {
+  background-color: #d4edda;
+  color: #155724;
+  border-color: #c3e6cb;
+}
+
+.alert-danger {
+  background-color: #f8d7da;
+  color: #721c24;
+  border-color: #f5c6cb;
+}
+
+.consent-wrapper {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.note {
+  color: #acadad;
+  font-size: 0.85rem;
+} 
+
+.use {
+  color: #acadad;
+  font-size: 0.75rem;
+  text-align: center;
+
+} 

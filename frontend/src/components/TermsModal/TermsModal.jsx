@@ -12,12 +12,12 @@ const TermsModal = () => {
 
   return (
     <>
-
+<div className="mx-1">
       {/* Trigger Link */}
       <Link to="#"className=" link-secondary "  style={{fontSize: "13.5px"}} onClick={handleShow}>
         Terms of use
       </Link>
-
+      </div>
       {/* Modal */}
       <Modal show={show} onHide={handleClose} size="lg" centered>
         <Modal.Header closeButton>

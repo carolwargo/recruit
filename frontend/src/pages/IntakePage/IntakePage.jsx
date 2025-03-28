@@ -5,23 +5,26 @@ import './IntakePage.css';
 const IntakePage = ({ token, userId }) => {
   const navigate = useNavigate();
 
-  // Redirect to login if no token
   useEffect(() => {
     if (!token) {
-      navigate('/login');
+      navigate('/auth'); // Should be /auth, not /login
     }
   }, [token, navigate]);
 
   if (!token) {
-    return null; // Nothing renders during redirect
+    return null;
   }
 
   return (
-    <div className="intake-wrapper bg-black text-white min-vh-100">
-      <div className="container py-5">
-        <h2 className="text-center mb-4">Welcome, User {userId}</h2>
-        <Outlet /> {/* Renders PersonalForm, AthleticForm, or AcademicForm */}
+    <div className='bg-black text-white min-vh-100'>
+      <div className="container">
+    <div className="intake-wrapper bg-black text-white ">
+      <div className="">
+        <p className="text-center mb-0">Welcome, User {userId}</p>
+        <Outlet />
       </div>
+    </div>
+    </div>
     </div>
   );
 };
