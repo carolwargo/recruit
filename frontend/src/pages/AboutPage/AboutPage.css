@@ -1,0 +1,40 @@
+/* frontend/src/App.css */
+.about-title {
+    font-family: 'Anton', sans-serif;
+    font-size: 48px;
+    color: #eae7e7; /* White */
+  }
+  
+  .about-title .and {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 100;
+    font-size: 32px;
+    color: #cae8ff; /* Blue */
+  }
+  
+  .tagline {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 100;
+    font-size: 24px;
+    color: #acadad; /* Gray */
+    margin-bottom: 2rem;
+  }
+  
+  .about-content {
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    color: #eae7e7; /* White */
+  }
+  
+  .highlight {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    color: #cae8ff; /* Blue */
+  }
+  
+  .mission {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+    color: #f5f0e1; /* Tan */
+    margin-top: 2rem;
+  }

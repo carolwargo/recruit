@@ -10,6 +10,7 @@ import AthleticForm from './components/IntakeForms/AthleticForm';
 import AcademicForm from './components/IntakeForms/AcademicForm';
 import UserSettings from './pages/UserSettings/UserSettings';
 import AuthPage from './pages/AuthPage/AuthPage';
+import AboutPage from './pages/AboutPage/AboutPage';  
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
@@ -33,6 +34,7 @@ function App() {
       <div className="App">
         <Navbar token={token} setToken={setToken} />
         <Routes>
+          <Route path="/about" element={<AboutPage />} />
           {/* Root: Redirect based on auth */}
           <Route
             path="/"

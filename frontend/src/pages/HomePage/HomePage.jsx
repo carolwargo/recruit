@@ -12,15 +12,14 @@ const Homepage = ({ token, setToken }) => {
       {/* Hero Section */}
       <section className="hero text-white text-center py-5">
         <div className="container">
-        <h1 style={{fontFamily:'Blinker'}}>Jock <span style={{fontFamily:'Poppins'}}>&</span> Boss.com</h1> 
-        <p className="tagline">Own Your Recruitment</p> {/* Raleway Thin */}
-          <p className="mb-4">
-            Build your personal brand with digital recruiting tools—custom websites, graphics, and social media marketing for student-athletes aiming for college sports.
-          </p>
+        <h1 className='animate-zoom' style={{fontFamily:'Blinker', fontSize:'6rem'}}>Jock<span style={{fontFamily:'Poppins', color:'#5cb6f9', fontWeight:'200'}}>&</span>Boss</h1> 
+        <h3 className="tagline animate-left">Own Your Recruitment</h3> {/* Raleway Thin */}
+       
           {token ? (
             <Link to="/" className="btn btn-lg">User Profile</Link>
           ) : (
-            <Link to="/">      <Button variant="primary" className="mt-3">Get Started</Button></Link>
+            <Link to="/">      
+            <Button variant=" primary" className="animate-bottom mt-3">Get Started</Button></Link>
           )}
         </div>
       </section>

@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { Navbar as BSNavbar, Nav, Container, NavDropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import Logo1 from '../../assets/images/Logos/Logo1.png';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Navbar.css';
 
@@ -20,12 +21,10 @@ const Navbar = ({ token, setToken, userId }) => {
   };
 
   return (
-    <BSNavbar bg="black" variant="dark" expand="lg" sticky="top">
+    <BSNavbar bg="black" variant="dark" expand="lg" sticky="top" className="border border-1 border-dark border-bottom">
       <Container fluid>
-        <BSNavbar.Brand as={NavLink} to="/" className="fw-bold">
-        <span style={{ color: '#eae7e7' }}>Jock</span>
-<span style={{ color: '#cae8ff' }}>And</span>
-<span style={{ color: '#eae7e7' }}>Boss</span>
+        <BSNavbar.Brand as={NavLink} to="/">
+        <span style={{fontFamily:'Blinker'}}>Jock<span style={{fontFamily:'Poppins', color:'#5cb6f9', fontWeight:'300', letterSpacing:'-2px'}}>and</span>Boss.com</span> 
         </BSNavbar.Brand>
         <BSNavbar.Toggle aria-controls="navbar-nav" />
         <BSNavbar.Collapse id="navbar-nav">

@@ -1,5 +1,6 @@
 {
   "name": "recruit",
+  "homepage": "https://carolwargo.github.io/recruit",
   "version": "1.0.0",
   "scripts": {
     "start": "concurrently \"npm run server\" \"npm run client\"",
@@ -10,8 +11,6 @@
     "deploy-gh": "cd frontend && npm run build && gh-pages -d dist"
   },
   "devDependencies": {
-    "concurrently": "^9.1.2",
-    "gh-pages": "^6.1.1"
-  },
-  "homepage": "https://carolwargo.github.io/recruit"
+    "concurrently": "^9.1.2"
+  }
 }
