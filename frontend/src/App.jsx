@@ -30,7 +30,7 @@ function App() {
   }, [token, userId]);
 
   return (
-    <Router basename="/recruit">
+    <BrowserRouter basename="/recruit">
       <div className="App">
         <Navbar token={token} setToken={setToken} />
         <Routes>
@@ -66,7 +66,7 @@ function App() {
           <Route path="*" element={<div>404 - Page Not Found</div>} />
         </Routes>
       </div>
-    </Router>
+    </BrowserRouter>
   );
 }
 
