@@ -10,10 +10,13 @@ const Homepage = ({ token, setToken }) => {
   return (
     <div className="homepage">
       {/* Hero Section */}
-      <section className="hero text-white text-center py-5">
-        <div className="container">
-        <h1 className='animate-zoom' style={{fontFamily:'Blinker', fontSize:'6rem'}}>Jock<span style={{fontFamily:'Poppins', color:'#5cb6f9', fontWeight:'200'}}>&</span>Boss</h1> 
-        <h3 className="tagline animate-left">Own Your Recruitment</h3> {/* Raleway Thin */}
+
+  
+      <section className="hero text-white text-center ">
+      <div className='d-flex flex-column justify-content-center align-items-center'>
+        <div className="container py-5"> 
+        <h1 className='animate-zoom-fade' style={{fontFamily:'Blinker', fontSize:'5rem'}}>Jock<span style={{fontFamily:'Poppins', color:'#5cb6f9', fontWeight:'200'}}>&</span>Boss</h1> 
+        <h3 className="tagline animate-left fw-light">Own Your Recruitment</h3> {/* Raleway Thin */}
        
           {token ? (
             <Link to="/" className="btn btn-lg">User Profile</Link>
@@ -21,6 +24,7 @@ const Homepage = ({ token, setToken }) => {
             <Link to="/">      
             <Button variant=" primary" className="animate-bottom mt-3">Get Started</Button></Link>
           )}
+        </div>
         </div>
       </section>
 
@@ -95,7 +99,7 @@ const Homepage = ({ token, setToken }) => {
         <SubscribeForm setToken={setToken} /> 
             </div>
           </div>
-    </div>
+          </div>
   );
 };
 

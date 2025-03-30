@@ -30,7 +30,7 @@ function App() {
   }, [token, userId]);
 
   return (
-    <Router>
+    <Router basename="/recruit">
       <div className="App">
         <Navbar token={token} setToken={setToken} />
         <Routes>

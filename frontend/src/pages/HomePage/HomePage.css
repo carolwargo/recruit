@@ -1,3 +1,4 @@
+/* Homepage.css */
 .homepage {
   background-color: var(--primary-bg);
   container-fluid: 100% !important ;
@@ -23,6 +24,20 @@
 .hero .btn-outline-light:hover {
   background-color: #ff01dd;
   color: black;
+}
+
+
+/* Media Queries for Font Size */
+@media (max-width: 768px) {
+  .hero-content .animate-zoom {
+    font-size: 4rem; /* Font size for tablets */
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-content .animate-zoom {
+    font-size: 3rem; /* Font size for mobile screens */
+  }
 }
 
 .features .card {

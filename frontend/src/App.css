@@ -14,6 +14,23 @@ body {
 }
 
 /*ANIMATIONS*/
+/* Combined zoom and fade-in animation */
+.animate-zoom-fade {
+  animation: zoomfade 2s forwards; /* Ensures the animation completes and stays in the final state */
+}
+
+/* Combined zoom and fade-in keyframes */
+@keyframes zoomfade {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 /*zoom*/
 .animate-zoom {
   animation: animatezoom 2s;
