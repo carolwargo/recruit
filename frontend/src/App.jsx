@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, Navigate} from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import HomePage from './pages/Homepage/Homepage';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -30,8 +30,9 @@ function App() {
   }, [token, userId]);
 
   return (
-    <BrowserRouter basename="/recruit">
+  
       <div className="App">
+          <BrowserRouter basename='/recruit'>
         <Navbar token={token} setToken={setToken} />
         <Routes>
           <Route path="/about" element={<AboutPage />} />
@@ -65,8 +66,8 @@ function App() {
           {/* Catch-all for unmatched routes */}
           <Route path="*" element={<div>404 - Page Not Found</div>} />
         </Routes>
+        </BrowserRouter>
       </div>
-    </BrowserRouter>
   );
 }
 
